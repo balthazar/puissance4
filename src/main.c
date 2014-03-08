@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 14:19:22 by pcotasso         ###   ########.fr       */
+/*   Updated: 2014/03/08 14:51:57 by pcotasso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,57 +69,38 @@ void	ft_free(t_env *env)
 	free(env->board);
 }
 
-int		check_win(t_env *env)
-{
-	int		i;
-	int		j;
 
-	i = j = 0;
-	while (i < env->row)
-	{
-		j = 0;
-		while (j < env->column)
-		{
-			if (env->board[i][j] != '.')
-			{
-			}
-			j++;
-		}
-		i++;
-	}
+void	game(t_env *env)
+{
+
+	display(env);
+	ft_free(env);
 }
 
-	void	game(t_env *env)
+void	ft_error(int type)
+{
+	if (type == ER_MALLOC)
+		ft_putendl_fd("Malloc error\n", 2);
+	else if (type == ER_SIZE)
+		ft_putstr_fd("Not enough rows or columns\n", 2);
+	else if (type == ER_USAGE)
+		ft_putstr_fd("usage: puissance-4 [rowsize] [columnsize] ...\n", 2);
+}
+
+int		main(int ac, char **av)
+{
+	t_env		env;
+	int			ret;
+
+	if (ac == 3)
 	{
-
-		display(env);
-		ft_free(env);
-	}
-
-	void	ft_error(int type)
-	{
-		if (type == ER_MALLOC)
-			ft_putendl_fd("Malloc error\n", 2);
-		else if (type == ER_SIZE)
-			ft_putstr_fd("Not enough rows or columns\n", 2);
-		else if (type == ER_USAGE)
-			ft_putstr_fd("usage: puissance-4 [rowsize] [columnsize] ...\n", 2);
-	}
-
-	int		main(int ac, char **av)
-	{
-		t_env		env;
-		int			ret;
-
-		if (ac == 3)
-		{
-			ret = init(av, &env);
-			if (ret == 1)
-				game(&env);
-			else
-				ft_error(ret);
-		}
+		ret = init(av, &env);
+		if (ret == 1)
+			game(&env);
 		else
-			ft_error(ER_USAGE);
-		return (0);
+			ft_error(ret);
 	}
+	else
+		ft_error(ER_USAGE);
+	return (0);
+}
