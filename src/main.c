@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 14:51:57 by pcotasso         ###   ########.fr       */
+/*   Updated: 2014/03/08 19:17:18 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,60 +20,34 @@ int		init(char **av, t_env *env)
 	env->column = ft_atoi(av[2]);
 	srand(time(NULL));
 	env->turn = rand() % SIZE;
+	printf("Turn %d\n", env->turn);
 	env->win = RUNNING;
 	if (env->row < 6 || env->column < 7)
 		return (ER_SIZE);
-	if (!(env->board = (char **)malloc(sizeof(char *) * env->row)))
+	if (!(env->board = (char **)malloc(sizeof(char *) * (env->row + 1))))
 		return (ER_MALLOC);
+	env->board[env->row + 1] = NULL;
 	i = 0;
 	while (i < env->row)
 	{
-		if (!(env->board[i] = (char *)malloc(sizeof(char) * env->column + 1)))
+		if (!(env->board[i] = (char *)malloc(sizeof(char) * (env->column + 1))))
 			return (ER_MALLOC);
 		ft_memset(env->board[i], '.', env->column);
-		env->board[i][env->column] = 0;
+		env->board[i][env->column] = '\0';
 		i++;
 	}
 	return (1);
 }
 
-void	display(t_env *env)
-{
-	int		i;
-
-	i = 0;
-	while (i < env->row)
-	{
-		ft_putendl(env->board[i]);
-		i++;
-	}
-	i = 1;
-	while (i <= env->row)
-	{
-		ft_putnbr(i);
-		i++;
-	}
-	ft_putstr("\n");
-}
 
 void	ft_free(t_env *env)
 {
-	int		i;
-
-	i = 0;
-	while (i < env->row)
-	{
-		free(env->board[i]);
-		i++;
-	}
-	free(env->board);
+	ft_free_tab((void ***)&env->board);
 }
-
 
 void	game(t_env *env)
 {
-
-	display(env);
+	ft_display(env);
 	ft_free(env);
 }
 

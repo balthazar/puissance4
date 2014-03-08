@@ -6,42 +6,63 @@
 #    By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/12 14:52:05 by pcotasso          #+#    #+#              #
-#    Updated: 2014/03/08 11:52:34 by pcotasso         ###   ########.fr        #
+#    Updated: 2014/03/08 19:11:52 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = puissance-4
-CC = llvm-gcc
-CFLAGS = -Wall -Wextra -Werror -g
-PATH_INC = includes
-PATH_OBJ = obj
-PATH_SRC = src
+CC       =  clang
+CFLAGS  +=  -Wextra -Wall -Werror -I./includes -I./libft/includes
+LDFLAGS +=  -L libft -lft
+DEBUG    =  -g3 -fno-inline -DD_ERRORS_ON
 
-SRC = \
-	  main.c \
+OBJDIR   =  .objs
+LISTDIR  =  src
+LIBDIR   =  libft
+DIRSRC   =  src
 
-OBJ = $(patsubst %.c, $(PATH_OBJ)/%.o, $(SRC))
+NAME     =  puissance-4
 
-all: $(NAME)
+SRC      =  $(DIRSRC)/main.c \
+			$(DIRSRC)/ft_display.c \
 
-$(NAME): $(OBJ)
-	@make -C ./libft
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L ./libft -lft
+OBJ      =  $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
-$(PATH_OBJ)/%.o : $(addprefix $(PATH_SRC)/, %.c)
-	@mkdir -p $(PATH_OBJ)
-	@$(CC) $(CFLAGS) -o $@ -c $^ -I $(PATH_INC)
+.SILENT:
+
+all: libft $(NAME)
+
+libft:
+	make -C libft
+
+$(addprefix $(OBJDIR)/, %.o): %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+	printf '\033[0;34mObject $@ [\033[0;32m✔\033[0;34m]\n'
+
+$(NAME): includes $(OBJDIR) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LDFLAGS)
+	printf '\033[1;35mProgram $(NAME) compiled [\033[0;32m✔\033[1;35m]\n\n'
 
 clean:
-	@make -C ./libft clean
-	@rm -f $(OBJ)
-	@if [ -d obj ]; then rm -d obj; fi
+	make -C $(LIBDIR) $@
+	/bin/rm	-fr $(OBJDIR)
+	printf '\n\033[1;31m%s\n\033[0m' "Clean $(NAME)"
 
 fclean: clean
-	@make -C ./libft fclean
-	@rm -f $(NAME)
+	make -C $(LIBDIR) $@
+	/bin/rm -fr $(NAME)
+	printf '\033[1;31m%s\n\033[0m' "Fclean $(NAME)"
 
-re: fclean all
+re:	fclean all
 
-.PHONY:
-	clean fclean re all
+debug:	CFLAGS += $(DEBUG)
+debug:	re
+	printf '\033[1;31mDebug version [%s]\n' "$(DEBUG)"
+
+$(OBJDIR):
+	/bin/mkdir $(OBJDIR);			\
+	for DIR in $(LISTDIR);			\
+	do								\
+		/bin/mkdir $(OBJDIR)/$$DIR;	\
+	done							\
+
+.PHONY:	clean fclean re debug libft

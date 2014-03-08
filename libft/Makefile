@@ -6,7 +6,7 @@
 #    By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/25 08:50:08 by pcotasso          #+#    #+#              #
-#    Updated: 2013/12/23 14:47:44 by pcotasso         ###   ########.fr        #
+#    Updated: 2014/03/08 19:09:56 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,8 @@ SRC = \
 	  ft_putendl_fd.c \
 	  ft_putnbr_fd.c \
 	  ft_lstnew.c \
-	  ft_lstdelone.c
+	  ft_lstdelone.c \
+	  ft_free_tab.c \
 
 OBJ = $(patsubst %.c, $(PATH_OBJ)/%.o, $(SRC))
 
