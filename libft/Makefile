@@ -6,7 +6,7 @@
 #    By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/25 08:50:08 by pcotasso          #+#    #+#              #
-#    Updated: 2014/03/08 19:09:56 by bgronon          ###   ########.fr        #
+#    Updated: 2014/03/08 20:04:08 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ SRC = \
 	  ft_lstnew.c \
 	  ft_lstdelone.c \
 	  ft_free_tab.c \
+	  get_next_line.c \
 
 OBJ = $(patsubst %.c, $(PATH_OBJ)/%.o, $(SRC))
 

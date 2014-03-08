@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:08:31 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 19:38:10 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 20:02:23 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ static void	ft_display_board(t_env *env)
 		++i;
 	}
 	ft_putstr("\n");
+}
+
+void		ft_current_player(int player)
+{
+	if (player == IA_TURN)
+		ft_putendl("Our IA gonna play.");
+	else
+		ft_putendl("Your turn to play.");
 }
 
 void		ft_display(t_env *env)

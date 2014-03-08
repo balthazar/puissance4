@@ -6,21 +6,21 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 19:17:18 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 20:05:36 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "puissance.h"
 
-int		init(char **av, t_env *env)
+static int	init(char **av, t_env *env)
 {
 	int			i;
 
+	env->win = 0;
 	env->row = ft_atoi(av[1]);
 	env->column = ft_atoi(av[2]);
 	srand(time(NULL));
-	env->turn = rand() % SIZE;
-	printf("Turn %d\n", env->turn);
+	env->turn = rand() % 2;
 	env->win = RUNNING;
 	if (env->row < 6 || env->column < 7)
 		return (ER_SIZE);
@@ -39,38 +39,32 @@ int		init(char **av, t_env *env)
 	return (1);
 }
 
-
-void	ft_free(t_env *env)
+static void	game(t_env *env)
 {
-	ft_free_tab((void ***)&env->board);
+	while (!env->win)
+	{
+		ft_display(env);
+		ft_current_player(env->turn);
+		if (env->turn == IA_TURN)
+			ft_ia_play(env);
+		else
+			ft_player_play(env);
+
+	}
+	ft_exit(env);
 }
 
-void	game(t_env *env)
+int			main(int ac, char **av)
 {
-	ft_display(env);
-	ft_free(env);
-}
-
-void	ft_error(int type)
-{
-	if (type == ER_MALLOC)
-		ft_putendl_fd("Malloc error\n", 2);
-	else if (type == ER_SIZE)
-		ft_putstr_fd("Not enough rows or columns\n", 2);
-	else if (type == ER_USAGE)
-		ft_putstr_fd("usage: puissance-4 [rowsize] [columnsize] ...\n", 2);
-}
-
-int		main(int ac, char **av)
-{
-	t_env		env;
+	t_env		*env;
 	int			ret;
 
 	if (ac == 3)
 	{
-		ret = init(av, &env);
+		env = ft_get_env();
+		ret = init(av, env);
 		if (ret == 1)
-			game(&env);
+			game(env);
 		else
 			ft_error(ret);
 	}

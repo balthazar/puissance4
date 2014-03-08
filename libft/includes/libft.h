@@ -6,12 +6,13 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 11:32:26 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 19:10:27 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 20:04:56 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 4096
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -23,6 +24,15 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_read
+{
+	int				size;
+	int				index;
+	int				fd;
+	char			*read;
+	struct s_read	*next;
+}					t_read;
 
 int				ft_power(int nbr, int power);
 
@@ -88,5 +98,6 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 void			ft_free_tab(void ***arr);
+int				get_next_line(int fd, char **line);
 
 #endif /* !LIBFT_H */
