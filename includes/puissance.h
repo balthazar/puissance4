@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 13:15:51 by pcotasso         ###   ########.fr       */
+/*   Updated: 2014/03/08 14:22:42 by pcotasso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,4 @@ typedef struct			s_env
 	int					turn;
 }						t_env;
 
-#endif
+#endif /* !PUISSANCE_H */
