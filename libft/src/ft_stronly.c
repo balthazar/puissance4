@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putpiece.c                                      :+:      :+:    :+:   */
+/*   ft_stronly.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 20:28:49 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 21:00:32 by bgronon          ###   ########.fr       */
+/*   Created: 2014/03/04 16:09:12 by bgronon           #+#    #+#             */
+/*   Updated: 2014/03/04 16:18:34 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
-
-void	ft_putpiece(int col, int player)
+int		ft_stronly(char *str, int (*fn)(int c))
 {
 	int		i;
-	t_env	*env;
 
 	i = 0;
-	env = ft_get_env();
-	while (i < (env->row - 1) && env->board[i + 1][col] == '.')
+	while (str[i] != '\0')
+	{
+		if (!fn(str[i]))
+			return (0);
 		++i;
-	if (player == HUMAN)
-		env->board[i][col] = 'o';
-	else
-		env->board[i][col] = 'x';
+	}
+	return (1);
 }

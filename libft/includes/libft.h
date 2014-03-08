@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 11:32:26 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 20:04:56 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 20:54:18 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 void			ft_free_tab(void ***arr);
 int				get_next_line(int fd, char **line);
+int				ft_stronly(char *str, int (*fn)(int c));
 
 #endif /* !LIBFT_H */

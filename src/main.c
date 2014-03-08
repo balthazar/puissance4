@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 20:28:12 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 21:01:54 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void	game(t_env *env)
 	{
 		ft_display(env);
 		ft_current_player(env->turn);
-		if (env->turn == IA_TURN)
+		if (env->turn == IA)
 			ft_ia_play(env);
 		else
-			ft_player_play(env);
+			ft_player_play();
 		env->turn -= env->turn;
 	}
 	ft_exit(env);
