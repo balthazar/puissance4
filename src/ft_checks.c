@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 20:20:49 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 22:25:08 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 22:30:23 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,11 @@ int			ft_check_win(t_env *env)
 
 	res = 0;
 	res = ft_win_rows(env, 0, 0);
-	printf("pute res %d\n", res);
 	if (res == IA)
 		env->win = IA_WIN;
 	else if (res == HUMAN)
 		env->win = HUMAN_WIN;
 	res = ft_win_cols(env, 0, 0);
-	printf("pute res %d\n", res);
 	if (res == IA)
 		env->win = IA_WIN;
 	else if (res == HUMAN)
