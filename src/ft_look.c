@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 22:23:19 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 23:02:49 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 23:16:06 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			ft_look_down(t_env *env, int i, int j, char c)
 	int		cpt;
 
 	cpt = 0;
-	while (cpt <= 3 && (i + cpt) < env->column)
+	while (cpt <= 3 && (i + cpt) < env->row)
 	{
 		if (env->board[i + cpt][j] != c)
 			return (cpt);
@@ -101,7 +101,7 @@ int			ft_look_down_right(t_env *env, int i, int j, char c)
 	int		cpt;
 
 	cpt = 0;
-	while (cpt <= 3 && (i + cpt) < env->column && (j + cpt) < env->column)
+	while (cpt <= 3 && (i + cpt) < env->row && (j + cpt) < env->column)
 	{
 		if (env->board[i + cpt][j + cpt] != c)
 			return (cpt);
@@ -115,7 +115,7 @@ int			ft_look_down_left(t_env *env, int i, int j, char c)
 	int		cpt;
 
 	cpt = 0;
-	while (cpt <= 3 && (i + cpt) < env->column && (j - cpt) >= 0)
+	while (cpt <= 3 && (i + cpt) < env->row && (j - cpt) >= 0)
 	{
 		if (env->board[i + cpt][j - cpt] != c)
 			return (cpt);

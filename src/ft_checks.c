@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 20:20:49 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 22:30:23 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 23:49:51 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,29 @@ static int	ft_win_cols(t_env *env, int i, int j)
 	return (-1);
 }
 
+static int	ft_win_diagonal(t_env *env, int i, int j)
+{
+	int res;
+
+	while (env->board[i])
+	{
+		j = 0;
+		while (env->board[i][j])
+		{
+			if (env->board[i][j] != '.')
+			{
+				res = ft_look_up_right(env, i, j, env->board[i][j]);
+				res = ft_look_up_left(env, i, j, env->board[i][j]);
+				res = ft_look_down_right(env, i, j, env->board[i][j]);
+				res = ft_look_down_left(env, i, j, env->board[i][j]);
+			}
+			++j;
+		}
+		++i;
+	}
+	return (-1);
+}
+
 int			ft_check_win(t_env *env)
 {
 	int	res;
@@ -93,5 +116,6 @@ int			ft_check_win(t_env *env)
 		env->win = IA_WIN;
 	else if (res == HUMAN)
 		env->win = HUMAN_WIN;
+	res = ft_win_diagonal(env, 0, 0);
 	return (0);
 }

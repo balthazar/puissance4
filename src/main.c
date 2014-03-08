@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 23:01:57 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 23:49:50 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int	init(char **av, t_env *env, int i)
 		return (ER_MALLOC);
 	env->max_pieces = env->row * env->column;
 	env->pieces = 0;
+	env->last.x = 0;
+	env->last.y = 0;
 	env->board[env->row + 1] = NULL;
 	while (i < env->row)
 	{

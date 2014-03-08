@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 20:28:49 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 21:00:32 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 23:49:13 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ void	ft_putpiece(int col, int player)
 		env->board[i][col] = 'o';
 	else
 		env->board[i][col] = 'x';
+	env->last.x = i;
+	env->last.y = col;
 }
