@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 20:05:36 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 21:03:59 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ static int	init(char **av, t_env *env)
 {
 	int			i;
 
-	env->win = 0;
 	env->row = ft_atoi(av[1]);
 	env->column = ft_atoi(av[2]);
 	srand(time(NULL));
 	env->turn = rand() % 2;
-	env->win = RUNNING;
+	env->win = 0;
 	if (env->row < 6 || env->column < 7)
 		return (ER_SIZE);
 	if (!(env->board = (char **)malloc(sizeof(char *) * (env->row + 1))))
@@ -41,15 +40,15 @@ static int	init(char **av, t_env *env)
 
 static void	game(t_env *env)
 {
-	while (!env->win)
+	while (!env->win || env->pieces == env->max_pieces)
 	{
 		ft_display(env);
 		ft_current_player(env->turn);
-		if (env->turn == IA_TURN)
+		if (env->turn == IA)
 			ft_ia_play(env);
 		else
-			ft_player_play(env);
-
+			ft_player_play();
+		env->turn -= env->turn;
 	}
 	ft_exit(env);
 }

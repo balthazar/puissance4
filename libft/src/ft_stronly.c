@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine.h                                           :+:      :+:    :+:   */
+/*   ft_stronly.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 14:21:59 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 14:51:24 by pcotasso         ###   ########.fr       */
+/*   Created: 2014/03/04 16:09:12 by bgronon           #+#    #+#             */
+/*   Updated: 2014/03/04 16:18:34 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENGINE_H
-# define ENGINE_H
+int		ft_stronly(char *str, int (*fn)(int c))
+{
+	int		i;
 
-# include "puissance.h"
-
-# define	UP			1
-# define	UPRIGHT		2
-# define	RIGHT		3
-# define 	RIGHTDOWN	4
-
-# define	HU_WIN		1337
-# define	AI_WIN		4008
-
-int		check_win(t_env *env)
-
-#endif /* !ENGINE_H */
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (!fn(str[i]))
+			return (0);
+		++i;
+	}
+	return (1);
+}

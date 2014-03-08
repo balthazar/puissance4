@@ -6,17 +6,38 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 20:02:54 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 20:06:28 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 20:59:11 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "puissance.h"
 
-void	ft_player_play(t_env *env)
+static int		ft_is_entry_okay(int c)
 {
-	char	*line;
+	return (ft_isdigit(c) || c == '\n');
+}
 
-	while (get_next_line(0, &line))
+void			ft_player_play(void)
+{
+	char	line[2048];
+	int		ok;
+	int		number;
+
+	ok = 0;
+	while (!ok)
 	{
+		ft_bzero(line, 2048);
+		read(0, line, 2048);
+		if (line)
+		{
+			number = ft_atoi(line);
+			if (ft_stronly(line, ft_is_entry_okay) && ft_check_col(number))
+				ok = 1;
+			else
+				ft_putendl("Please enter a valid number.");
+		}
 	}
+	ft_putpiece(number, HUMAN);
+	ft_putchar('\n');
 }

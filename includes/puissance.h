@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 20:06:26 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 21:04:21 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define ER_MALLOC	-2
 # define ER_USAGE	-3
 
-# define IA_TURN	1
-# define HU_TURN	0
+# define IA			1
+# define HUMAN		-1
 
 typedef struct			s_env
 {
@@ -37,6 +37,8 @@ typedef struct			s_env
 	int					row;
 	int					column;
 	int					win;
+	int					pieces;
+	int					max_pieces;
 	int					turn;
 }						t_env;
 
@@ -46,10 +48,16 @@ typedef struct			s_env
 t_env	*ft_get_env(void);
 
 /*
-** ft_ia.c && ft_player.c
+** ft_ia.c && ft_player.c && ft_putpiece.c
 */
 void	ft_ia_play(t_env *env);
-void	ft_player_play(t_env *env);
+void	ft_player_play(void);
+void	ft_putpiece(int col, int player);
+
+/*
+** ft_checks.c
+*/
+int		ft_check_col(int col);
 
 /*
 ** ft_display.c
