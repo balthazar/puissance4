@@ -6,7 +6,7 @@
 #    By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/12 14:52:05 by pcotasso          #+#    #+#              #
-#    Updated: 2014/03/08 19:57:39 by bgronon          ###   ########.fr        #
+#    Updated: 2014/03/08 20:31:04 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,10 @@ NAME     =  puissance-4
 
 SRC      =  $(DIRSRC)/main.c \
 			$(DIRSRC)/ft_get_env.c \
-			$(DIRSRC)/ft_ia_play.c \
+			$(DIRSRC)/ft_ia.c \
+			$(DIRSRC)/ft_player.c \
+			$(DIRSRC)/ft_putpiece.c \
+			$(DIRSRC)/ft_checks.c \
 			$(DIRSRC)/ft_display.c \
 			$(DIRSRC)/ft_errors.c \
 			$(DIRSRC)/ft_exit.c \
