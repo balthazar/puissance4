@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 21:01:54 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 21:03:59 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	init(char **av, t_env *env)
 
 static void	game(t_env *env)
 {
-	while (!env->win)
+	while (!env->win || env->pieces == env->max_pieces)
 	{
 		ft_display(env);
 		ft_current_player(env->turn);

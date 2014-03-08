@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 21:01:29 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 21:04:21 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct			s_env
 	int					column;
 	int					win;
 	int					pieces;
+	int					max_pieces;
 	int					turn;
 }						t_env;
 
