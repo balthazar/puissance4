@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:08:31 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 20:36:25 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 22:30:57 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,20 @@ static void	ft_display_board(t_env *env)
 void		ft_current_player(int player)
 {
 	if (player == IA)
-		ft_putendl("Our IA gonna play.");
+		ft_putendl("\033[0;34mOur IA gonna play.\033[0m");
 	else
-		ft_putendl("Your turn to play.");
+		ft_putendl("\033[0;34mYour turn to play.\033[0m");
+}
+
+void		ft_display_winner(t_env *env)
+{
+	if (env->win == IA_WIN)
+		ft_putendl("\033[0;34mOur IA beat you.\033[0m");
+	else if (env->win == HUMAN_WIN)
+		ft_putendl("\033[0;34mYou win, cheater.\033[0m");
+	else
+		ft_putendl("\033[0;34mTie game.\033[0m");
+	ft_putchar('\n');
 }
 
 void		ft_display(t_env *env)
