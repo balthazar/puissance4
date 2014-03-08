@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 20:20:49 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 23:49:51 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 00:12:25 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,98 +24,33 @@ int			ft_check_col(int col)
 	return (0);
 }
 
-static int	ft_win_rows(t_env *env, int i, int j)
+static int	ft_look_win(t_env *env, int i, int j, char c)
 {
-	char	last;
-	int		cpt;
-
-	while (env->board[i])
-	{
-		j = 0;
-		cpt = 0;
-		while (env->board[i][j])
-		{
-			if (env->board[i][j] == 'o')
-				cpt = (cpt == 0 || last == 'o') ? (cpt + 1) : 0;
-			else if (env->board[i][j] == 'x')
-				cpt = (cpt == 0 || last == 'x') ? (cpt + 1) : 0;
-			if (cpt == 4 && env->board[i][j] == 'x')
-				return (IA);
-			else if (cpt == 4 && env->board[i][j] == 'o')
-				return (HUMAN);
-			last = env->board[i][j];
-			++j;
-		}
-		++i;
-	}
-	return (-1);
-}
-
-static int	ft_win_cols(t_env *env, int i, int j)
-{
-	char	last;
-	int		cpt;
-
-	while (j < (env->row - 1))
-	{
-		i = 0;
-		cpt = 0;
-		while (i < (env->column - 1))
-		{
-			if (env->board[i][j] == 'o')
-				cpt = (cpt == 0 || last == 'o') ? (cpt + 1) : 0;
-			else if (env->board[i][j] == 'x')
-				cpt = (cpt == 0 || last == 'x') ? (cpt + 1) : 0;
-			if (cpt == 4 && env->board[i][j] == 'x')
-				return (IA);
-			else if (cpt == 4 && env->board[i][j] == 'o')
-				return (HUMAN);
-			last = env->board[i][j];
-			++i;
-		}
-		++j;
-	}
-	return (-1);
-}
-
-static int	ft_win_diagonal(t_env *env, int i, int j)
-{
-	int res;
-
-	while (env->board[i])
-	{
-		j = 0;
-		while (env->board[i][j])
-		{
-			if (env->board[i][j] != '.')
-			{
-				res = ft_look_up_right(env, i, j, env->board[i][j]);
-				res = ft_look_up_left(env, i, j, env->board[i][j]);
-				res = ft_look_down_right(env, i, j, env->board[i][j]);
-				res = ft_look_down_left(env, i, j, env->board[i][j]);
-			}
-			++j;
-		}
-		++i;
-	}
-	return (-1);
+	if (ft_look_up(env, i, j, c) == 4 || ft_look_down(env, i, j, c) == 4
+		|| ft_look_left(env, i, j, c) == 4 || ft_look_right(env, i, j, c) == 4
+		|| ft_look_up_right(env, i, j, c) == 4
+		|| ft_look_up_left(env, i, j, c) == 4
+		|| ft_look_down_right(env, i, j, c) == 4
+		|| ft_look_down_left(env, i, j, c) == 4)
+		return (1);
+	return (0);
 }
 
 int			ft_check_win(t_env *env)
 {
-	int	res;
+	int		i;
+	int		j;
+	char	c;
 
-	res = 0;
-	res = ft_win_rows(env, 0, 0);
-	if (res == IA)
-		env->win = IA_WIN;
-	else if (res == HUMAN)
-		env->win = HUMAN_WIN;
-	res = ft_win_cols(env, 0, 0);
-	if (res == IA)
-		env->win = IA_WIN;
-	else if (res == HUMAN)
-		env->win = HUMAN_WIN;
-	res = ft_win_diagonal(env, 0, 0);
+	i = env->last.x;
+	j = env->last.y;
+	c = env->board[i][j];
+	if (ft_look_win(env, i, j, c))
+	{
+		if (c == 'x')
+			env->win = IA_WIN;
+		else if (c == 'o')
+			env->win = HUMAN_WIN;
+	}
 	return (0);
 }
