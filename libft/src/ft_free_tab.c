@@ -6,15 +6,15 @@
 /*   By: mpillet <mpillet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 18:55:03 by mpillet           #+#    #+#             */
-/*   Updated: 2014/03/01 16:02:26 by janteuni         ###   ########.fr       */
+/*   Updated: 2014/03/09 00:17:38 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				ft_free_tab(void ***arr)
+void		ft_free_tab(void ***arr)
 {
-	int				i;
+	int		i;
 
 	i = 0;
 	while ((*arr)[i])
