@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/08 20:13:59 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/08 21:20:21 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_ia_play(t_env *env)
 {
 	(void)env;
-
+	ft_putpiece(0, IA);
 }
