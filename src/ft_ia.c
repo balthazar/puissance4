@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 12:38:43 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:59:44 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static t_choice	*ft_priority_col(int col)
 	env = ft_get_env();
 	if (!(out = (t_choice *) malloc(sizeof(t_choice))))
 		return (NULL);
+	out->type = 0;
 	out->col = col;
+	out->priority = 0;
+	out->priority += ft_position_score(col);
 	return (out);
 }
 
@@ -44,6 +47,19 @@ static int		ft_priorities(t_env *env, t_list **choices)
 	return (0);
 }
 
+static void		ft_choose_best(t_list *choices)
+{
+	t_list	*best;
+
+	best = NULL;
+	while (choices)
+	{
+		if (!best || GET(choices, priority) < GET(best, priority))
+			best = choices;
+		choices = choices->next;
+	}
+}
+
 int				ft_ia_play(t_env *env)
 {
 	t_list	*choices;
@@ -55,6 +71,7 @@ int				ft_ia_play(t_env *env)
 		choices = NULL;
 		if (ft_priorities(env, &choices) == -1)
 			return (0);
+		ft_choose_best(choices);
 		ft_free_choices(&choices);
 	}
 	return (1);

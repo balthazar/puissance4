@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_env.c                                       :+:      :+:    :+:   */
+/*   ft_priority.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:43:37 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 12:59:34 by bgronon          ###   ########.fr       */
+/*   Created: 2014/03/09 12:44:59 by bgronon           #+#    #+#             */
+/*   Updated: 2014/03/09 13:03:31 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "puissance.h"
 
-t_env	*ft_get_env(void)
+int		ft_position_score(int col)
 {
-	static t_env	*env = NULL;
+	t_env	*env;
+	int		res;
+	int		i;
+	int		row;
 
-	if (!env)
-	{
-		if (!(env = (t_env *) malloc(sizeof(t_env))))
-			return (NULL);
-	}
-	return (env);
+	env = ft_get_env();
+	res = 0;
+	i = 0;
+	row = 0;
+	res += (col == 0 || col == (env->column)) ? 1 : 0;
+	res += (col == 1 || col == (env->column - 1)) ? 2 : 0;
+	res += (col == 2 || col == (env->column - 2)) ? 3 : 0;
+	res += (col >= 3 || col <= (env->column - 3)) ? 5 : 0;
+	
+	return (res);
 }
