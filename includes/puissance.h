@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/08 23:48:25 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 11:21:29 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_player_play(void);
 void	ft_putpiece(int col, int player);
 
 /*
-** ft_checks.c && ft_looks.c
+** ft_checks.c && ft_looks.c && ft_looks_diagonals.c
 */
 int		ft_check_col(int col);
 int		ft_check_win(t_env *env);
