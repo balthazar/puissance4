@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 13:45:01 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 15:28:57 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 typedef struct	s_choice
 {
 	int			col;
+	int			row;
 	int			priority;
 	int			type;
 }				t_choice;
@@ -66,8 +67,8 @@ t_env	*ft_get_env(void);
 int		ft_ia_play(t_env *env);
 int		ft_player_play(void);
 void	ft_putpiece(int col, int player);
-int		ft_position_score(int col);
-int		ft_is_hight_target(int col);
+int		ft_position_score(int col, int row);
+int		ft_is_hight_target(int col, int row);
 
 /*
 ** ft_checks.c && ft_looks.c && ft_looks_diagonals.c

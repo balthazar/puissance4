@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 20:02:54 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 12:22:44 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 14:39:07 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int				ft_player_play(void)
 		if (line)
 		{
 			number = ft_atoi(line);
-			if (line[0] != '\0' && ft_stronly(line, ft_is_entry_okay)
+			if (line[0] != '\0' && line[0] != '\n'
+				&& ft_stronly(line, ft_is_entry_okay)
 				&& ft_check_col(number))
 				ok = 1;
 			else
