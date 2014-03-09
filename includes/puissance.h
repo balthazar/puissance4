@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 17:05:58 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 17:58:10 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define ROW		env->row
 # define GET(E, T)	((t_choice *) (E)->content)->T
 # define BORD(X, Y)	(env->board[X][Y])
+# define LDL		ft_look_down_left
+# define LDR		ft_look_down_right
 
 typedef struct	s_choice
 {
@@ -94,7 +96,6 @@ int		ft_look_up_left(int i, int j, char c, int repeat);
 ** ft_display.c
 */
 void	ft_display(t_env *env);
-void	ft_current_player(int player);
 void	ft_display_winner(t_env *env);
 
 /*

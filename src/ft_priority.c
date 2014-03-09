@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 12:44:59 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 17:27:35 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 17:58:37 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int			ft_position_score(int col, int row)
 	return (res);
 }
 
-static int	ft_check_next(int row, int col,
-						int (*fn)(int i, int j, char c, int repeat))
+static int	ft_next(int row, int col,
+					int (*fn)(int i, int j, char c, int repeat))
 {
 	t_env	*env;
 	int		res;
@@ -62,23 +62,23 @@ int			ft_is_hwin_move(int col, int row, t_env *env)
 {
 	if (col > 0)
 	{
-		if (row > 0 && ft_check_next(row - 1, col - 1, ft_look_up_left) == H_WIN)
+		if (row > 0 && ft_next(row - 1, col - 1, ft_look_up_left) == H_WIN)
 			return (1);
-		if (row < (env->row - 1) && ft_check_next(row + 1, col - 1, ft_look_down_left) == H_WIN)
+		if (row < (env->row - 1) && ft_next(row + 1, col - 1, LDL) == H_WIN)
 			return (1);
-		if (ft_check_next(row, col - 1, ft_look_left) == H_WIN)
+		if (ft_next(row, col - 1, ft_look_left) == H_WIN)
 			return (1);
 	}
 	if (col < (env->column - 1))
 	{
-		if (row > 0 && ft_check_next(row - 1, col + 1, ft_look_up_right) == H_WIN)
+		if (row > 0 && ft_next(row - 1, col + 1, ft_look_up_right) == H_WIN)
 			return (1);
-		if (row < (env->row - 1) && ft_check_next(row + 1, col + 1, ft_look_down_right) == H_WIN)
+		if (row < (env->row - 1) && ft_next(row + 1, col + 1, LDR) == H_WIN)
 			return (1);
-		if (ft_check_next(row, col + 1, ft_look_right) == H_WIN)
+		if (ft_next(row, col + 1, ft_look_right) == H_WIN)
 			return (1);
 	}
-	if (row < (env->row - 1) && ft_check_next(row + 1, col, ft_look_down) == H_WIN)
+	if (row < (env->row - 1) && ft_next(row + 1, col, ft_look_down) == H_WIN)
 		return (1);
 	return (0);
 }
@@ -87,23 +87,23 @@ int			ft_is_win_move(int col, int row, t_env *env)
 {
 	if (col > 0)
 	{
-		if (row > 0 && ft_check_next(row - 1, col - 1, ft_look_up_left) == I_WIN)
+		if (row > 0 && ft_next(row - 1, col - 1, ft_look_up_left) == I_WIN)
 			return (1);
-		if (row < (env->row - 1) && ft_check_next(row + 1, col - 1, ft_look_down_left) == I_WIN)
+		if (row < (env->row - 1) && ft_next(row + 1, col - 1, LDL) == I_WIN)
 			return (1);
-		if (ft_check_next(row, col - 1, ft_look_left) == I_WIN)
+		if (ft_next(row, col - 1, ft_look_left) == I_WIN)
 			return (1);
 	}
 	if (col < (env->column - 1))
 	{
-		if (row > 0 && ft_check_next(row - 1, col + 1, ft_look_up_right) == I_WIN)
+		if (row > 0 && ft_next(row - 1, col + 1, ft_look_up_right) == I_WIN)
 			return (1);
-		if (row < (env->row - 1) && ft_check_next(row + 1, col + 1, ft_look_down_right) == I_WIN)
+		if (row < (env->row - 1) && ft_next(row + 1, col + 1, LDR) == I_WIN)
 			return (1);
-		if (ft_check_next(row, col + 1, ft_look_right) == I_WIN)
+		if (ft_next(row, col + 1, ft_look_right) == I_WIN)
 			return (1);
 	}
-	if (row < (env->row - 1) && ft_check_next(row + 1, col, ft_look_down) == I_WIN)
+	if (row < (env->row - 1) && ft_next(row + 1, col, ft_look_down) == I_WIN)
 		return (1);
 	return (0);
 }
@@ -116,20 +116,20 @@ int			ft_determine_priority(int col, int row, t_env *env)
 	if (col > 0)
 	{
 		if (row > 0)
-			res += ft_check_next(row - 1, col - 1, ft_look_up_left);
+			res += ft_next(row - 1, col - 1, ft_look_up_left);
 		if (row < (env->row - 1))
-			res += ft_check_next(row + 1, col - 1, ft_look_down_left);
-		res += ft_check_next(row, col - 1, ft_look_left);
+			res += ft_next(row + 1, col - 1, ft_look_down_left);
+		res += ft_next(row, col - 1, ft_look_left);
 	}
 	if (col < (env->column - 1))
 	{
 		if (row > 0)
-			res += ft_check_next(row - 1, col + 1, ft_look_up_right);
+			res += ft_next(row - 1, col + 1, ft_look_up_right);
 		if (row < (env->row - 1))
-			res += ft_check_next(row + 1, col + 1, ft_look_down_right);
-		res += ft_check_next(row, col + 1, ft_look_right);
+			res += ft_next(row + 1, col + 1, ft_look_down_right);
+		res += ft_next(row, col + 1, ft_look_right);
 	}
 	if (row < (env->row - 1))
-		res += ft_check_next(row + 1, col, ft_look_down);
+		res += ft_next(row + 1, col, ft_look_down);
 	return (res);
 }

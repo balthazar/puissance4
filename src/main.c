@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 16:02:34 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 17:56:41 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int	game(t_env *env)
 	while (!env->win && env->pieces < env->max_pieces)
 	{
 		ft_display(env);
-		ft_current_player(env->turn);
 		if (env->turn == IA)
 		{
 			if (!ft_ia_play(env))
