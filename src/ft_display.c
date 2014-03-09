@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:08:31 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 17:37:57 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 22:51:41 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_display_board(t_env *env)
 	ft_putstr("\n");
 }
 
-void		ft_display(t_env *env)
+static void	ft_better_show(t_env *env)
 {
 	int		i;
 
@@ -47,7 +47,25 @@ void		ft_display(t_env *env)
 	ft_putchar('|');
 	while (i < env->column)
 	{
-		ft_putnbr(i);
+		if (i >= 10)
+			ft_putnbr(i / 10);
+		else
+			ft_putchar(' ');
+		ft_putchar('|');
+		++i;
+	}
+	ft_putstr("\n|");
+}
+
+void		ft_display(t_env *env)
+{
+	int		i;
+
+	i = 0;
+	ft_better_show(env);
+	while (i < env->column)
+	{
+		ft_putnbr(i % 10);
 		ft_putchar('|');
 		++i;
 	}
