@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bgronon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2013/11/21 20:35:37 by bgronon           #+#    #+#             */
+/*   Updated: 2013/11/23 17:55:29 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	t_list	*choices;
+	int		i;
 
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	if (f != NULL)
 	{
-		choices = NULL;
-		
+		i = 0;
+		while (s[i] != '\0')
+		{
+			f(i, &(s[i]));
+			i++;
+		}
 	}
 }

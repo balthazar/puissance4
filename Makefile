@@ -6,12 +6,12 @@
 #    By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/12 14:52:05 by pcotasso          #+#    #+#              #
-#    Updated: 2014/03/09 11:21:54 by bgronon          ###   ########.fr        #
+#    Updated: 2014/03/09 11:47:45 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC       =  clang
-CFLAGS  +=  -Wextra -Wall -Werror -I./includes -I./libft/includes
+CFLAGS  +=  -Wextra -Wall -Werror -I./includes -I./libft/inc
 LDFLAGS +=  -L libft -lft
 DEBUG    =  -g3 -fno-inline -DD_ERRORS_ON
 

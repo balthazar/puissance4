@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_tab_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2014/03/09 11:43:57 by bgronon           #+#    #+#             */
+/*   Updated: 2014/03/09 11:45:00 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+int		ft_tab_len(char **arr)
 {
-	t_list	*choices;
+	int			i;
 
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	i = 0;
+	while (*arr)
 	{
-		choices = NULL;
-		
+		++i;
+		++arr;
 	}
+	return (i);
 }

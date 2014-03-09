@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_dlstdel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bgronon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2014/01/05 15:13:11 by bgronon           #+#    #+#             */
+/*   Updated: 2014/01/05 17:15:44 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include <stdlib.h>
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+void	ft_dlstdel(t_dlst **lst)
 {
-	t_list	*choices;
+	t_dlst	*tmp;
 
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	while (*lst)
 	{
-		choices = NULL;
-		
+		tmp = *lst;
+		if ((*lst)->next)
+			*lst = (*lst)->next;
+		tmp = NULL;
+		free(tmp);
 	}
 }

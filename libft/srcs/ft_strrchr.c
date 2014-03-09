@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bgronon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2013/11/20 17:33:20 by bgronon           #+#    #+#             */
+/*   Updated: 2013/11/27 11:27:37 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_list	*choices;
+	size_t	len;
 
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	len = ft_strlen(s);
+	while (len != 0 && s[len] != (char)c)
 	{
-		choices = NULL;
-		
+		len--;
 	}
+	if (s[len] == (char)c)
+	{
+		return (&(((char *)s)[len]));
+	}
+	return (NULL);
 }

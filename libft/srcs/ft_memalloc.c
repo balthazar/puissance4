@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bgronon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2013/11/21 18:23:12 by bgronon           #+#    #+#             */
+/*   Updated: 2013/11/30 16:07:31 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include <stdlib.h>
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+void	*ft_memalloc(size_t size)
 {
-	t_list	*choices;
+	void	*area;
 
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	area = NULL;
+	if (size)
 	{
-		choices = NULL;
-		
+		area = malloc(size);
+		if (area)
+			ft_bzero(area, size);
 	}
+	return (area);
 }

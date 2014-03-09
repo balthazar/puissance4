@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bgronon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2013/11/20 10:00:49 by bgronon           #+#    #+#             */
+/*   Updated: 2013/11/20 10:35:34 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_list	*choices;
+	size_t	cpt;
 
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	cpt = 0;
+	while (cpt < n)
 	{
-		choices = NULL;
-		
+		if (CHAR(s1, cpt) != CHAR(s2, cpt))
+		{
+			return (CHAR(s1, cpt) - CHAR(s2, cpt));
+		}
+		cpt++;
 	}
+	return (0);
 }

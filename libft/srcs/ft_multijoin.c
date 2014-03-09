@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_multijoin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2014/02/28 18:56:12 by bgronon           #+#    #+#             */
+/*   Updated: 2014/02/28 19:12:57 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include <stdarg.h>
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+char	*ft_multijoin(int count, ...)
 {
-	t_list	*choices;
+	va_list		ap;
+	char		*res;
 
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	res = NULL;
+	va_start(ap, count);
+	res = va_arg(ap, char *);
+	while (count > 0)
 	{
-		choices = NULL;
-		
+		res = ft_strjoin(res, va_arg(ap, char *));
+		--count;
 	}
+	va_end(ap);
+	return (res);
 }

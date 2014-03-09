@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bgronon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2013/11/22 00:30:41 by bgronon           #+#    #+#             */
+/*   Updated: 2013/12/13 17:41:30 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include <unistd.h>
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+void	ft_putstr(const char *s)
 {
-	t_list	*choices;
-
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
-	{
-		choices = NULL;
-		
-	}
+	write(1, s, ft_strlen(s));
 }

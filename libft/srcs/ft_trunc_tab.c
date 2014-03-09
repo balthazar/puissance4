@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_trunc_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2014/03/04 15:06:49 by bgronon           #+#    #+#             */
+/*   Updated: 2014/03/04 15:07:12 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include <stdlib.h>
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+void		ft_trunc_tab(char ***arr, int nb)
 {
-	t_list	*choices;
+	char	**new;
+	int		i;
+	int		len;
 
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	len = ft_tab_len(*arr) - nb;
+	if (len > 0)
 	{
-		choices = NULL;
-		
+		new = (char **) malloc(sizeof(char *) * (len + 1));
+		if (new)
+		{
+			i = 0;
+			while (*arr && (*arr)[i + nb])
+			{
+				new[i] = ft_strdup((*arr)[i + nb]);
+				++i;
+			}
+			new[i] = NULL;
+			ft_free_tab((void ***)arr);
+			*arr = new;
+		}
 	}
 }

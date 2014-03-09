@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ia.c                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bgronon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:39:07 by bgronon          ###   ########.fr       */
+/*   Created: 2013/11/21 10:56:51 by bgronon           #+#    #+#             */
+/*   Updated: 2013/11/27 19:14:06 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "puissance.h"
+#include "libft.h"
 
-void	ft_ia_play(t_env *env)
+int		ft_isalpha(int c)
 {
-	t_list	*choices;
-
-	if (env->pieces == 0)
-		ft_putpiece((env->column / 2), IA);
-	else
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 	{
-		choices = NULL;
-		
+		return (1);
 	}
+	return (0);
 }
