@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:08:31 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 12:06:34 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 17:27:31 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ static void	ft_display_board(t_env *env)
 		{
 			ft_putchar('|');
 			if (env->board[i][j] == 'o')
-				ft_putstr("\033[1;31m");
+				ft_putstr("\033[1;31m◎");
 			else if (env->board[i][j] == 'x')
-				ft_putstr("\033[0;32m");
-			ft_putchar(env->board[i][j]);
+				ft_putstr("\033[0;32m◎");
+			else
+				ft_putstr("◯");
 			ft_putstr("\033[0m");
 			++j;
 		}
@@ -74,7 +75,7 @@ void		ft_display_winner(t_env *env)
 	if (env->win == IA_WIN)
 		ft_putendl("\033[0;34mOur IA beat you.\033[0m");
 	else if (env->win == HUMAN_WIN)
-		ft_putendl("\033[0;34mYou win, cheater.\033[0m");
+		ft_putendl("\033[0;34mYou won, cheater.\033[0m");
 	else
 		ft_putendl("\033[0;34mTie game.\033[0m");
 	ft_putchar('\n');

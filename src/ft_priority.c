@@ -6,13 +6,13 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 12:44:59 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 15:29:02 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 17:27:35 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "puissance.h"
 
-int		ft_position_score(int col, int row)
+int			ft_position_score(int col, int row)
 {
 	t_env	*env;
 	int		res;
@@ -32,27 +32,104 @@ int		ft_position_score(int col, int row)
 	return (res);
 }
 
-int		ft_is_hight_target(int col, int row)
+static int	ft_check_next(int row, int col,
+						int (*fn)(int i, int j, char c, int repeat))
 {
 	t_env	*env;
 	int		res;
+	int		count;
+	char	c;
 
+	res = -1;
 	env = ft_get_env();
+	c = BORD(row, col);
+	if (c != '.')
+	{
+		res = 1;
+		res *= (c == 'x') ? 900 : 1000;
+		count = fn(row, col, c, 1);
+		if (count >= 3 && c == 'o')
+			return (99998);
+		else if (count >= 3 && c == 'x')
+			return (99999);
+		else
+			res *= count;
+	}
+	return (res);
+}
+
+int			ft_is_hwin_move(int col, int row, t_env *env)
+{
+	if (col > 0)
+	{
+		if (row > 0 && ft_check_next(row - 1, col - 1, ft_look_up_left) == H_WIN)
+			return (1);
+		if (row < (env->row - 1) && ft_check_next(row + 1, col - 1, ft_look_down_left) == H_WIN)
+			return (1);
+		if (ft_check_next(row, col - 1, ft_look_left) == H_WIN)
+			return (1);
+	}
+	if (col < (env->column - 1))
+	{
+		if (row > 0 && ft_check_next(row - 1, col + 1, ft_look_up_right) == H_WIN)
+			return (1);
+		if (row < (env->row - 1) && ft_check_next(row + 1, col + 1, ft_look_down_right) == H_WIN)
+			return (1);
+		if (ft_check_next(row, col + 1, ft_look_right) == H_WIN)
+			return (1);
+	}
+	if (row < (env->row - 1) && ft_check_next(row + 1, col, ft_look_down) == H_WIN)
+		return (1);
+	return (0);
+}
+
+int			ft_is_win_move(int col, int row, t_env *env)
+{
+	if (col > 0)
+	{
+		if (row > 0 && ft_check_next(row - 1, col - 1, ft_look_up_left) == I_WIN)
+			return (1);
+		if (row < (env->row - 1) && ft_check_next(row + 1, col - 1, ft_look_down_left) == I_WIN)
+			return (1);
+		if (ft_check_next(row, col - 1, ft_look_left) == I_WIN)
+			return (1);
+	}
+	if (col < (env->column - 1))
+	{
+		if (row > 0 && ft_check_next(row - 1, col + 1, ft_look_up_right) == I_WIN)
+			return (1);
+		if (row < (env->row - 1) && ft_check_next(row + 1, col + 1, ft_look_down_right) == I_WIN)
+			return (1);
+		if (ft_check_next(row, col + 1, ft_look_right) == I_WIN)
+			return (1);
+	}
+	if (row < (env->row - 1) && ft_check_next(row + 1, col, ft_look_down) == I_WIN)
+		return (1);
+	return (0);
+}
+
+int			ft_determine_priority(int col, int row, t_env *env)
+{
+	int		res;
+
+	res = 0;
 	if (col > 0)
 	{
 		if (row > 0)
-			res = ft_look_up_left(row - 1, col - 1, env->board[row - 1][col - 1], 1);
+			res += ft_check_next(row - 1, col - 1, ft_look_up_left);
 		if (row < (env->row - 1))
-			res = ft_look_down_left(row + 1, col - 1, env->board[row + 1][col - 1], 1);
-		res = ft_look_left(row, col - 1, env->board[row][col - 1], 1);
+			res += ft_check_next(row + 1, col - 1, ft_look_down_left);
+		res += ft_check_next(row, col - 1, ft_look_left);
 	}
 	if (col < (env->column - 1))
 	{
 		if (row > 0)
-			res = ft_look_up_right(row - 1, col + 1, env->board[row - 1][col + 1], 1);
+			res += ft_check_next(row - 1, col + 1, ft_look_up_right);
 		if (row < (env->row - 1))
-			res = ft_look_down_right(row + 1, col + 1, env->board[row + 1][col + 1], 1);
-		res = ft_look_right(row, col + 1, env->board[row][col + 1], 1);
+			res += ft_check_next(row + 1, col + 1, ft_look_down_right);
+		res += ft_check_next(row, col + 1, ft_look_right);
 	}
-	return (0);
+	if (row < (env->row - 1))
+		res += ft_check_next(row + 1, col, ft_look_down);
+	return (res);
 }
