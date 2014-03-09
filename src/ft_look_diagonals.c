@@ -6,17 +6,21 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 11:20:37 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:21:04 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 13:47:17 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "puissance.h"
 
-int			ft_look_up_right(t_env *env, int i, int j, char c)
+int			ft_look_up_right(int i, int j, char c, int repeat)
 {
+	t_env	*env;
 	int		cpt;
 
+	env = ft_get_env();
 	cpt = 0;
+	if (repeat)
+		ft_look_down_left(i, j, c, 0);
 	while (cpt <= 3 && (i - cpt) >= 0 && (j + cpt) < env->column)
 	{
 		if (env->board[i - cpt][j + cpt] != c)
@@ -26,11 +30,15 @@ int			ft_look_up_right(t_env *env, int i, int j, char c)
 	return (cpt);
 }
 
-int			ft_look_up_left(t_env *env, int i, int j, char c)
+int			ft_look_up_left(int i, int j, char c, int repeat)
 {
+	t_env	*env;
 	int		cpt;
 
+	env = ft_get_env();
 	cpt = 0;
+	if (repeat)
+		ft_look_down_right(i, j, c, 0);
 	while (cpt <= 3 && (i - cpt) >= 0 && (j - cpt) >= 0)
 	{
 		if (env->board[i - cpt][j - cpt] != c)
@@ -40,11 +48,15 @@ int			ft_look_up_left(t_env *env, int i, int j, char c)
 	return (cpt);
 }
 
-int			ft_look_down_right(t_env *env, int i, int j, char c)
+int			ft_look_down_right(int i, int j, char c, int repeat)
 {
+	t_env	*env;
 	int		cpt;
 
+	env = ft_get_env();
 	cpt = 0;
+	if (repeat)
+		ft_look_up_left(i, j, c, 0);
 	while (cpt <= 3 && (i + cpt) < env->row && (j + cpt) < env->column)
 	{
 		if (env->board[i + cpt][j + cpt] != c)
@@ -54,11 +66,15 @@ int			ft_look_down_right(t_env *env, int i, int j, char c)
 	return (cpt);
 }
 
-int			ft_look_down_left(t_env *env, int i, int j, char c)
+int			ft_look_down_left(int i, int j, char c, int repeat)
 {
+	t_env	*env;
 	int		cpt;
 
+	env = ft_get_env();
 	cpt = 0;
+	if (repeat)
+		ft_look_up_right(i, j, c, 0);
 	while (cpt <= 3 && (i + cpt) < env->row && (j - cpt) >= 0)
 	{
 		if (env->board[i + cpt][j - cpt] != c)
