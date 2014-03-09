@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 18:33:26 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 18:49:39 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PUISSANCE_H
 
 # include "libft.h"
-# include <stdlib.h>
-# include <time.h>
 
 # define ER_SIZE	-1
 # define ER_MALLOC	-2

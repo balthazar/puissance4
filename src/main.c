@@ -6,10 +6,12 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 18:46:23 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 18:49:52 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <time.h>
+#include <stdlib.h>
 #include "puissance.h"
 
 static int	init(char **av, t_env *env, int i)
