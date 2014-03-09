@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 12:59:44 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 13:50:41 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static t_choice	*ft_priority_col(int col)
 	out->col = col;
 	out->priority = 0;
 	out->priority += ft_position_score(col);
+//	out->priority +
 	return (out);
 }
 
@@ -54,10 +55,12 @@ static void		ft_choose_best(t_list *choices)
 	best = NULL;
 	while (choices)
 	{
-		if (!best || GET(choices, priority) < GET(best, priority))
+		if (!best || (GET(choices, priority) > GET(best, priority)))
 			best = choices;
 		choices = choices->next;
 	}
+	if (best)
+		ft_putpiece(GET(best, col), IA);
 }
 
 int				ft_ia_play(t_env *env)
