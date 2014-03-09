@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 11:21:29 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:12:30 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_choice
 {
 	int			col;
 	int			priority;
+	int			type;
 }				t_choice;
 
 typedef struct	s_xy
@@ -65,8 +66,8 @@ t_env	*ft_get_env(void);
 /*
 ** ft_ia.c && ft_player.c && ft_putpiece.c
 */
-void	ft_ia_play(t_env *env);
-void	ft_player_play(void);
+int		ft_ia_play(t_env *env);
+int		ft_player_play(void);
 void	ft_putpiece(int col, int player);
 
 /*
