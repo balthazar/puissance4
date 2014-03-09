@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 18:21:57 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 18:55:20 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void		ft_choose_best(t_list *choices)
 	best = NULL;
 	while (choices)
 	{
-		if (GET(choices, priority == I_WIN))
+		if (GET(choices, priority) == I_WIN)
 		{
 			best = choices;
 			break ;
