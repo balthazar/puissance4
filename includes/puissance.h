@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 12:35:58 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:57:18 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 # include <time.h>
 # include <stdio.h> /* TODO REMOVE */
 
-# define SIZE		2
-# define RUNNING	1
-# define IA_WIN		2
-# define HUMAN_WIN	3
-# define DRAW		4
-
 # define ER_SIZE	-1
 # define ER_MALLOC	-2
 # define ER_USAGE	-3
@@ -32,6 +26,7 @@
 # define HUMAN		1
 # define COL		env->column
 # define ROW		env->row
+# define GET(E, T)	((t_choice *) (E)->content)->T
 
 typedef struct	s_choice
 {
@@ -64,9 +59,10 @@ typedef struct	s_env
 t_env	*ft_get_env(void);
 
 /*
-** ft_ia.c && ft_player.c && ft_putpiece.c
+** ft_ia.c && ft_priority.c && ft_player.c && ft_putpiece.c
 */
 int		ft_ia_play(t_env *env);
+int		ft_position_score(int col);
 int		ft_player_play(void);
 void	ft_putpiece(int col, int player);
 

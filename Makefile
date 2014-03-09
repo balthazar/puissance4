@@ -6,7 +6,7 @@
 #    By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/12 14:52:05 by pcotasso          #+#    #+#              #
-#    Updated: 2014/03/09 11:47:45 by bgronon          ###   ########.fr        #
+#    Updated: 2014/03/09 12:52:29 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC      =  $(DIRSRC)/main.c \
 			$(DIRSRC)/ft_get_env.c \
 			$(DIRSRC)/ft_ia.c \
 			$(DIRSRC)/ft_player.c \
+			$(DIRSRC)/ft_priority.c \
 			$(DIRSRC)/ft_putpiece.c \
 			$(DIRSRC)/ft_checks.c \
 			$(DIRSRC)/ft_look.c \

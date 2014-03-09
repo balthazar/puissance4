@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 12:36:00 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 13:02:50 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,11 @@ int			main(int ac, char **av)
 
 	if (ac == 3)
 	{
+		ret = -1;
 		env = ft_get_env();
-		ret = init(av, env, 0);
-		if (ret == 1)
+		if (env)
+			ret = init(av, env, 0);
+		if (ret == 1 && env)
 		{
 			if (!game(env))
 			{
