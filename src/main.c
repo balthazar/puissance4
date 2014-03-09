@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 18:29:13 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 18:46:23 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	init(char **av, t_env *env, int i)
 	srand(time(NULL));
 	env->turn = rand() % 2;
 	env->win = 0;
-	if (env->row < 6 || env->column < 7)
+	if (env->row < 6 || env->column < 7 || env->row > 100 || env->column > 100)
 		return (ER_SIZE);
 	if (!(env->board = (char **)malloc(sizeof(char *) * (ROW + 1))))
 		return (ER_MALLOC);
