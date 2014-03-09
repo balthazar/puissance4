@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/09 12:44:59 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 13:37:09 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 14:21:41 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int		ft_position_score(int col)
 	res += (col >= 3 || col <= (env->column - 3)) ? 20 : 0;
 	while (row < (env->row - 1) && env->board[row + 1][col] == '.')
 		++row;
-	res += (row == 0 || row == (env->row)) ? 1 : 0;
-	res += (row == 1 || row == (env->row - 1)) ? 2 : 0;
-	res += (row == 2 || row == (env->row - 2)) ? 5 : 0;
-	res += (row == 3 || row == (env->row - 3)) ? 10 : 0;
+	res += (row == 0 || row == (env->row)) ? 2 : 0;
+	res += (row == 1 || row == (env->row - 1)) ? 5 : 0;
+	res += (row == 2 || row == (env->row - 2)) ? 10 : 0;
+	res += (row >= 3 || row <= (env->row - 3)) ? 20 : 0;
 	return (res);
 }
 

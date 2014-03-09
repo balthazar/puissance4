@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 13:50:41 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 14:21:39 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ static t_choice	*ft_priority_col(int col)
 		return (NULL);
 	out->type = 0;
 	out->col = col;
-	out->priority = 0;
-	out->priority += ft_position_score(col);
-//	out->priority +
+	out->priority = ft_position_score(col);
+	if (out->priority != -1)
+	{
+		out->priority += ft_is_hight_target(col);
+	}
 	return (out);
 }
 
