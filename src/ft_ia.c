@@ -6,14 +6,51 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:23:12 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:18:13 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "puissance.h"
 
-void	ft_ia_play(t_env *env)
+static t_choice	ft_priority_col(int col)
 {
-	(void)env;
-	ft_putpiece(0, IA);
+	t_choice	*out;
+	t_env		*env;
+
+	out = NULL;
+	env = ft_get_env();
+	if (!(out = (t_choice *) malloc(sizeof(t_choice))))
+		return (NULL);
+}
+
+static int		ft_priorities(t_env *env, t_list **choices)
+{
+	t_choice	*new;
+	int			i;
+
+	i = 0;
+	while (i < env->column)
+	{
+		new = ft_priority_col(i);
+		if (!new)
+			return (-1);
+		ft_lstpush(choices, ft_lstnew());
+		++i;
+	}
+	return (0);
+}
+
+int				ft_ia_play(t_env *env)
+{
+	t_list	*choices;
+
+	if (env->pieces == 0)
+		ft_putpiece((env->column / 2), IA);
+	else
+	{
+		choices = NULL;
+		if (ft_priorities(env, &choices) == -1)
+			return (0);
+	}
+	return (1);
 }

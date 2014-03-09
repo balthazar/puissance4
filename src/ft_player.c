@@ -6,11 +6,12 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 20:02:54 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 11:27:02 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:13:06 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "puissance.h"
 
 static int		ft_is_entry_okay(int c)
@@ -18,7 +19,7 @@ static int		ft_is_entry_okay(int c)
 	return (ft_isdigit(c) || c == '\n');
 }
 
-void			ft_player_play(void)
+int				ft_player_play(void)
 {
 	char	line[2048];
 	int		ok;
@@ -29,6 +30,8 @@ void			ft_player_play(void)
 	{
 		ft_bzero(line, 2048);
 		read(0, line, 2048);
+		if (read == -1)
+			return (0);
 		if (line)
 		{
 			number = ft_atoi(line);
@@ -41,4 +44,5 @@ void			ft_player_play(void)
 	}
 	ft_putpiece(number, HUMAN);
 	ft_putchar('\n');
+	return (1);
 }

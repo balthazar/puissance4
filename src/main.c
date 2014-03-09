@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 11:19:54 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:16:35 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,20 @@ static int	init(char **av, t_env *env, int i)
 
 static void	game(t_env *env)
 {
-	while (!env->win && env->pieces <= env->max_pieces)
+	while (!env->win && env->pieces < env->max_pieces)
 	{
 		ft_display(env);
 		ft_current_player(env->turn);
 		if (env->turn == IA)
-			ft_ia_play(env);
+		{
+			if (!ft_ia_play(env))
+				return (0);
+		}
 		else
-			ft_player_play();
+		{
+			if (!ft_player_play())
+				return (0);
+		}
 		++env->pieces;
 		env->turn = !env->turn;
 		ft_check_win(env);
@@ -56,6 +62,7 @@ static void	game(t_env *env)
 	ft_display(env);
 	ft_display_winner(env);
 	ft_exit(env);
+	return (1);
 }
 
 int			main(int ac, char **av)
@@ -68,7 +75,13 @@ int			main(int ac, char **av)
 		env = ft_get_env();
 		ret = init(av, env, 0);
 		if (ret == 1)
-			game(env);
+		{
+			if (!game(env))
+			{
+				ft_putendl("\033[1;31m[FATAL ERROR]\033[0m");
+				ft_exit(env);
+			}
+		}
 		else
 			ft_error(ret);
 	}
