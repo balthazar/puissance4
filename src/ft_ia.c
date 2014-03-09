@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 17:27:26 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 18:21:57 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static t_choice	*ft_priority_col(int col)
 	env = ft_get_env();
 	if (!(out = (t_choice *) malloc(sizeof(t_choice))))
 		return (NULL);
-	out->type = 0;
 	out->col = col;
 	out->row = 0;
 	while (out->row < (env->row - 1) && env->board[out->row + 1][col] == '.')

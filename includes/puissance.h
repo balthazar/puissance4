@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 17:58:10 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 18:15:12 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct	s_choice
 	int			row;
 	int			priority;
 	int			pos;
-	int			type;
 }				t_choice;
 
 typedef struct	s_xy
