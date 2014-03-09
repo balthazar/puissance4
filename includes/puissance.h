@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 18:49:39 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 23:03:51 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int		ft_position_score(int col, int row);
 int		ft_is_win_move(int col, int row, t_env *env);
 int		ft_is_hwin_move(int col, int row, t_env *env);
 int		ft_determine_priority(int col, int row, t_env *env);
+int		ft_ennemy_win(int col, int row);
 
 /*
 ** ft_checks.c && ft_looks.c && ft_looks_diagonals.c

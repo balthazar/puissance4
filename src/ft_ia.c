@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 22:52:04 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 23:04:06 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ static void		ft_choose_best(t_list *choices)
 			break ;
 		}
 		if (!best || ((GET(choices, priority) > GET(best, priority))
-					&& GET(choices, pos) > 0))
+					&& GET(choices, pos) > 0
+					&& !ft_ennemy_win(GET(choices, col), GET(choices, row))))
 			best = choices;
 		choices = choices->next;
 	}
