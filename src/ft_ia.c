@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 19:56:52 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 14:39:17 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 17:27:26 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@ static t_choice	*ft_priority_col(int col)
 	out->row = 0;
 	while (out->row < (env->row - 1) && env->board[out->row + 1][col] == '.')
 		++out->row;
-	out->priority = ft_position_score(col, out->row);
-	if (out->priority != -1)
+	out->pos = ft_position_score(col, out->row);
+	if (out->pos != -1)
 	{
-		out->priority += ft_is_hight_target(col, out->row);
+		out->priority = 0;
+		if (ft_is_win_move(col, out->row, env))
+			out->priority = I_WIN;
+		else if (ft_is_hwin_move(col, out->row, env))
+			out->priority = H_WIN;
+		else
+			out->priority = ft_determine_priority(col, out->row, env);
 	}
 	return (out);
 }
@@ -60,7 +66,13 @@ static void		ft_choose_best(t_list *choices)
 	best = NULL;
 	while (choices)
 	{
-		if (!best || (GET(choices, priority) > GET(best, priority)))
+		if (GET(choices, priority == I_WIN))
+		{
+			best = choices;
+			break ;
+		}
+		if (!best || ((GET(choices, priority) > GET(best, priority))
+					&& GET(choices, pos) > 0))
 			best = choices;
 		choices = choices->next;
 	}

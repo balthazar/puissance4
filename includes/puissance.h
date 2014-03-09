@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 15:28:57 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 17:05:58 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,19 @@
 # define HUMAN		1
 # define IA_WIN		2
 # define HUMAN_WIN	3
+# define I_WIN		99999
+# define H_WIN		99998
 # define COL		env->column
 # define ROW		env->row
 # define GET(E, T)	((t_choice *) (E)->content)->T
+# define BORD(X, Y)	(env->board[X][Y])
 
 typedef struct	s_choice
 {
 	int			col;
 	int			row;
 	int			priority;
+	int			pos;
 	int			type;
 }				t_choice;
 
@@ -68,7 +72,9 @@ int		ft_ia_play(t_env *env);
 int		ft_player_play(void);
 void	ft_putpiece(int col, int player);
 int		ft_position_score(int col, int row);
-int		ft_is_hight_target(int col, int row);
+int		ft_is_win_move(int col, int row, t_env *env);
+int		ft_is_hwin_move(int col, int row, t_env *env);
+int		ft_determine_priority(int col, int row, t_env *env);
 
 /*
 ** ft_checks.c && ft_looks.c && ft_looks_diagonals.c
