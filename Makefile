@@ -6,7 +6,7 @@
 #    By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/12 14:52:05 by pcotasso          #+#    #+#              #
-#    Updated: 2014/03/09 18:37:47 by bgronon          ###   ########.fr        #
+#    Updated: 2014/03/09 22:39:25 by bgronon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LISTDIR  =  src
 LIBDIR   =  libft
 DIRSRC   =  src
 
-NAME     =  puissance-4
+NAME     =  puissance4
 
 SRC      =  $(DIRSRC)/main.c \
 			$(DIRSRC)/ft_get_env.c \
