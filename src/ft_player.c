@@ -6,7 +6,7 @@
 /*   By: bgronon <bgronon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 20:02:54 by bgronon           #+#    #+#             */
-/*   Updated: 2014/03/09 12:13:06 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:22:44 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ int				ft_player_play(void)
 	while (!ok)
 	{
 		ft_bzero(line, 2048);
-		read(0, line, 2048);
-		if (read == -1)
+		if ((read(0, line, 2048)) == -1)
 			return (0);
 		if (line)
 		{
