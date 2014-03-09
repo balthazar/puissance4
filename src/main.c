@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 11:53:05 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 12:16:35 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:36:00 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	init(char **av, t_env *env, int i)
 	return (1);
 }
 
-static void	game(t_env *env)
+static int	game(t_env *env)
 {
 	while (!env->win && env->pieces < env->max_pieces)
 	{

@@ -6,7 +6,7 @@
 /*   By: pcotasso <pcotasso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/08 12:06:56 by pcotasso          #+#    #+#             */
-/*   Updated: 2014/03/09 12:12:30 by bgronon          ###   ########.fr       */
+/*   Updated: 2014/03/09 12:35:58 by bgronon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void	ft_error(int type);
 ** ft_exit.c
 */
 void	ft_exit(t_env *env);
+void	ft_free_choices(t_list **choices);
 
 #endif /* !PUISSANCE_H */
